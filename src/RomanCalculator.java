@@ -35,7 +35,7 @@ public class RomanCalculator {
 	 * @throws BadExpressionException if the expression contains invalid elements
 	 */
 
-	public static String calculate(String expression) throws BadExpressionException{
+	public static String calculate(String expression) throws BadExpressionException {
 		if(expression == null || expression.isEmpty())
 			return null;
 
@@ -54,7 +54,7 @@ public class RomanCalculator {
 	 * @return the expression containing Arabic numbers
 	 * @throws BadExpressionException if the expression contains invalid characters
 	 */
-	private static String convertExpressionToArabic(String expression) throws BadExpressionException{
+	private static String convertExpressionToArabic(String expression) throws BadExpressionException {
 
 		StringBuilder builder = new StringBuilder();
 		StringBuilder romanNumber = new StringBuilder();
@@ -108,7 +108,7 @@ public class RomanCalculator {
 	 * @return true if the character is a Roman numeral
 	 */
 
-	private static boolean isRomanNumeral(char currentChar){
+	private static boolean isRomanNumeral(char currentChar) {
 		if(romanNumerals.indexOf(currentChar) == -1)
 			return false;
 		else
@@ -131,7 +131,7 @@ public class RomanCalculator {
 	 * @throws BadExpressionException if the expression format is invalid
 	 */
 
-	private static int calculateExpressionWithoutParenthesis(String expression) throws BadExpressionException{
+	private static int calculateExpressionWithoutParenthesis(String expression) throws BadExpressionException {
 
 		StringBuilder finalExpression = new StringBuilder();
 
@@ -188,10 +188,10 @@ public class RomanCalculator {
 	 * @param operator the character representing the operator type
 	 */
 
-	private static void solveOperationsForOperator(StringBuilder expression, char operator){
+	private static void solveOperationsForOperator(StringBuilder expression, char operator) {
 		solveSignConflicts(expression);
 
-		while(expression.indexOf(String.valueOf(operator), 1) != -1){
+		while(expression.indexOf(String.valueOf(operator), 1) != -1) {
 			int operatorPos = expression.indexOf(String.valueOf(operator), 1);
 			int startPos = getOperationStartPos(expression.toString(), operatorPos);
 			int endPos = getOperationEndPos(expression.toString(), operatorPos);
@@ -209,7 +209,7 @@ public class RomanCalculator {
 	 * @param expression the expression in the form of a StringBuilder
 	 */
 
-	private static void solveSignConflicts(StringBuilder expression){
+	private static void solveSignConflicts(StringBuilder expression) {
 		while(expression.indexOf("+-") != -1){
 			int conflictPos = expression.indexOf("+-");
 			expression.replace(conflictPos, conflictPos+2, "-");
@@ -244,7 +244,7 @@ public class RomanCalculator {
 	 * @return the position of the start of the left operand
 	 */
 
-	private static int getOperationStartPos(String expression, int operatorPos){
+	private static int getOperationStartPos(String expression, int operatorPos) {
 		int position = 0;
 
 		for(int i = operatorPos-1; i >= 0; i--){
@@ -272,7 +272,7 @@ public class RomanCalculator {
 	 * @return the position of the end of the right operand
 	 */
 
-	private static int getOperationEndPos(String expression, int operatorPos){
+	private static int getOperationEndPos(String expression, int operatorPos) {
 		int position = expression.length()-1;
 
 		for(int i = operatorPos+2; i < expression.length(); i++){
@@ -295,7 +295,7 @@ public class RomanCalculator {
 	 * @return the result of the operation in the form of a String
 	 */
 
-	private static String calculateOperation(String expression, char operator){
+	private static String calculateOperation(String expression, char operator) {
 		int value = 0;
 		int operatorPos = expression.indexOf(operator);
 
@@ -357,7 +357,7 @@ public class RomanCalculator {
 	 * @throws BadExpressionException if the number format is invalid
 	 */
 
-	public static int romanToArabic(String number) throws BadExpressionException{
+	public static int romanToArabic(String number) throws BadExpressionException {
 
 		if(!isRomanNumberSyntaxCorrect(number))
 			throw new BadExpressionException("Roman number format is invalid.");
@@ -440,15 +440,12 @@ public class RomanCalculator {
 	 * @return true if the numerals represent a valid composed numeral
 	 */
 	
-	private static boolean isNumeralOrderCorrect(char first, char second){
-		if(first == 'I' && 
-				(second == 'V' || second == 'X'))
+	private static boolean isNumeralOrderCorrect(char first, char second) {
+		if(first == 'I' && (second == 'V' || second == 'X'))
 			return true;
-		if(first == 'X' && 
-				(second == 'L' || second == 'C'))
+		if(first == 'X' && (second == 'L' || second == 'C'))
 			return true;
-		if(first == 'C' && 
-				(second == 'D' || second == 'M'))
+		if(first == 'C' && (second == 'D' || second == 'M'))
 			return true;
 
 		return false;
@@ -465,7 +462,7 @@ public class RomanCalculator {
 	 * @return the Roman representation of the given value
 	 */
 	
-	public static String arabicToRoman(int value){
+	public static String arabicToRoman(int value) {
 		int number = value;
 		StringBuilder romanNumber = new StringBuilder();
 
@@ -539,7 +536,7 @@ public class RomanCalculator {
 	 * @return the Arabic value of the Roman numeral
 	 */
 	
-	private static int getValueOfNumeral(char character){
+	private static int getValueOfNumeral(char character) {
 		int value = 0;
 
 		switch(character){
